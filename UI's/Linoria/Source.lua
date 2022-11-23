@@ -9,11 +9,11 @@ local Mouse = LocalPlayer:GetMouse();
 
 local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
 
-local ScreenGui = Instance.new('ScreenGui');
-ProtectGui(ScreenGui);
+local Linoria = Instance.new('ScreenGui');
+ProtectGui(Linoria);
 
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global;
-ScreenGui.Parent = CoreGui;
+Linoria.ZIndexBehavior = Enum.ZIndexBehavior.Global;
+Linoria.Parent = CoreGui;
 
 local Toggles = {};
 local Options = {};
@@ -38,7 +38,7 @@ local Library = {
     OpenedFrames = {};
 
     Signals = {};
-    ScreenGui = ScreenGui;
+    Linoria = Linoria;
 };
 
 local RainbowStep = 0
@@ -133,7 +133,7 @@ function Library:AddToolTip(InfoStr, HoverInstance)
 
         Size = UDim2.fromOffset(X + 5, Y + 4),
         ZIndex = 11;
-        Parent = Library.ScreenGui,
+        Parent = Library.Linoria,
 
         Visible = false,
     })
@@ -306,14 +306,14 @@ function Library:Unload()
         Library.OnUnload()
     end
 
-    ScreenGui:Destroy()
+    Linoria:Destroy()
 end
 
 function Library:OnUnload(Callback)
     Library.OnUnload = Callback
 end
 
-Library:GiveSignal(ScreenGui.DescendantRemoving:Connect(function(Instance)
+Library:GiveSignal(Linoria.DescendantRemoving:Connect(function(Instance)
     if Library.RegistryMap[Instance] then
         Library:RemoveFromRegistry(Instance);
     end;
@@ -2108,7 +2108,7 @@ do
         Position = UDim2.new(0, 0, 0, 40);
         Size = UDim2.new(0, 300, 0, 200);
         ZIndex = 100;
-        Parent = ScreenGui;
+        Parent = Linoria;
     });
 
     Library:Create('UIListLayout', {
@@ -2124,7 +2124,7 @@ do
         Size = UDim2.new(0, 213, 0, 20);
         ZIndex = 200;
         Visible = false;
-        Parent = ScreenGui;
+        Parent = Linoria;
     });
 
     local WatermarkInner = Library:Create('Frame', {
@@ -2189,7 +2189,7 @@ do
         Size = UDim2.new(0, 210, 0, 20);
         Visible = false;
         ZIndex = 100;
-        Parent = ScreenGui;
+        Parent = Linoria;
     });
 
     local KeybindInner = Library:Create('Frame', {
@@ -2388,7 +2388,7 @@ function Library:CreateWindow(...)
         Size = Config.Size,
         Visible = false;
         ZIndex = 1;
-        Parent = ScreenGui;
+        Parent = Linoria;
     });
 
     Library:MakeDraggable(Outer, 25);
@@ -2885,7 +2885,7 @@ function Library:CreateWindow(...)
         Visible = true;
         Text = '';
         Modal = false;
-        Parent = ScreenGui;
+        Parent = Linoria;
     });
 
     function Library.Toggle()
@@ -2930,11 +2930,6 @@ function Library:CreateWindow(...)
     Window.Holder = Outer;
 
     return Window;
-end;
-
-ScreenGui.Name = 'Linoria'
-if game:GetService("CoreGui").Linoria then
-    game:GetService("CoreGui").Linoria:Destroy();
 end;
 
 return Library
