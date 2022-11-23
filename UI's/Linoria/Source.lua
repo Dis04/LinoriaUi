@@ -2932,4 +2932,9 @@ function Library:CreateWindow(...)
     return Window;
 end;
 
+ScreenGui.Name = 'Linoria'
+if game:GetService("CoreGui").Linoria then
+    game:GetService("CoreGui").Linoria:Destroy();
+end;
+
 return Library
