@@ -7,10 +7,7 @@ local RenderStepped = RunService.RenderStepped;
 local LocalPlayer = game:GetService('Players').LocalPlayer;
 local Mouse = LocalPlayer:GetMouse();
 
-local ProtectGui = protectgui or (syn and syn.protect_gui) or (function() end);
-
 local Linoria = Instance.new('ScreenGui');
-ProtectGui(Linoria);
 
 Linoria.ZIndexBehavior = Enum.ZIndexBehavior.Global;
 Linoria.Parent = CoreGui;
